@@ -15,7 +15,7 @@ public class AlunoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void criarAluno(@RequestBody Aluno aluno) {
+    public void CriarAluno(@RequestBody Aluno aluno) {
         alunoService.criarAluno(aluno);
     }
 }
