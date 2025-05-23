@@ -43,6 +43,7 @@ public class DisciplinaController {
         disciplinaService.atualizarDisciplinaporId(id, disciplina);
     }
 
-
-
+    @PatchMapping("/atualizar-notas/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void atualizraNotas(@PathVariable Long Id.)
 }
