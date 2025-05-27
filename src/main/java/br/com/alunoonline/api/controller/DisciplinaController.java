@@ -2,6 +2,7 @@ package br.com.alunoonline.api.controller;
 
 import br.com.alunoonline.api.model.Disciplina;
 import br.com.alunoonline.api.service.DisciplinaService;
+import dtos.AtualizarNotasRequestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import java.util.Optional;
 public class DisciplinaController {
     @Autowired
     DisciplinaService disciplinaService;
+    private MatriculaAlunoController matriculaAlunoService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -26,9 +28,10 @@ public class DisciplinaController {
     public List<Disciplina> listarDisciplinas() {
         return disciplinaService.listarTodasDisciplinas();
     }
+
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Optional<Disciplina> buscarDisciplinarPorId(@PathVariable Long id){
+    public Optional<Disciplina> buscarDisciplinarPorId(@PathVariable Long id) {
         return disciplinaService.buscarDisciplinaPorId(id);
     }
 
@@ -37,6 +40,7 @@ public class DisciplinaController {
     public void deletarDisciplina(@PathVariable Long id) {
         disciplinaService.deletarDisciplina(id);
     }
+
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void atualizarDisciplina(@PathVariable Long id, @RequestBody Disciplina disciplina) {
@@ -45,5 +49,8 @@ public class DisciplinaController {
 
     @PatchMapping("/atualizar-notas/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void atualizraNotas(@PathVariable Long Id.)
+    public void atualizarNotas(@PathVariable Long id, @RequestBody AtualizarNotasRequestDTO atualizarNotasRequestDTO) {
+        matriculaAlunoService.atualizarNotas(id, atualizarNotasRequestDTO);
+    }
 }
+
